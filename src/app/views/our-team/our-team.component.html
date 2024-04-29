@@ -1,0 +1,112 @@
+<div class="our-team container" [class]="isDarkMode ? 'dark-box' : 'border'">
+  <div class="meet-our-team">
+    <div class="header">
+      <h2 class="fs-title section-title" [class]="isDarkMode ? 'txt-dark' : ''">
+        Meet Our Team
+      </h2>
+      <p class="txt-muted fs-p-bold section-description">
+        Save thousands to millions of bucks by using single tool for different
+      </p>
+      <p class="txt-muted fs-p-bold">
+        amazing and outstanding and useful great and useful admin
+      </p>
+    </div>
+    <div class="content">
+      <div>
+        <div class="overlay">
+          <img
+            src="../../../assets/images/img-1.jpg"
+            width="100%"
+            style="border-radius: 10px"
+          />
+          <div
+            class="overlay-layer"
+            fxLayout="row"
+            fxLayoutAlign="center center"
+            fxLayoutGap="20px"
+          >
+            <dx-button text="Pricing" [height]="40" type="default"></dx-button>
+            <dx-button text="Joint Us" [height]="40"></dx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="meet-our-team">
+    <div class="header">
+      <h2 class="fs-title" [class]="isDarkMode ? 'txt-dark' : ''">
+        Our Great Team
+      </h2>
+      <p class="txt-muted fs-p-bold section-description">
+        It’s no doubt that when a development takes longer to complete,
+        additional costs to
+      </p>
+      <p class="txt-muted fs-p-bold section-description">
+        integrate and test each extra feature creeps up and haunts most of us.
+      </p>
+    </div>
+    <div class="content">
+      <div class="team-wrapper">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="">
+          <div
+            class="team-item"
+            *ngFor="let teamItem of team"
+            fxFlex.gt-md="0 1 25%"
+            fxFlex="50%"
+          >
+            <div
+              class="team-item-img octagon"
+              [style.background-image]="teamItem.image"
+            ></div>
+            <div class="team-item-details">
+              <p class="fs-p-bold" style="margin-bottom: 0" [class]="isDarkMode ? 'txt-dark' : ''">
+                {{ teamItem.firstName + " " + teamItem.lastName }}
+              </p>
+              <p class="txt-muted">{{ teamItem.job }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="joint-us">
+    <div class="header">
+      <h2 class="section-title fs-title" [class]="isDarkMode ? 'txt-dark' : ''">Join Us</h2>
+      <P class="txt-muted fs-p-bold"
+        >Save thousands to millions of bucks by using single tool</P
+      >
+      <P class="txt-muted fs-p-bold"
+        >for different amazing and great useful admin</P
+      >
+    </div>
+    <div class="content" style="padding-bottom: 50px;">
+      <p class="txt-muted">
+        First, a disclaimer – the entire process of writing a blog post often
+        takes more than a couple of hours, even if you can type eighty words per
+        minute and your writing skills are sharp. From the seed of the idea to
+        finally hitting “Publish,” you might spend several days or maybe even a
+        week “writing” a blog post, but it’s important to spend those vital
+        hours planning Your Post (yes, thinking counts as working if you’re a
+        blogger) before you actually write it.
+      </p>
+      <div class="action" fxLayoutAlign="center" style="padding-bottom: 30px;">
+        <dx-button
+        [text]="'Apply Now'"
+        [type]="'default'"
+       >
+        </dx-button>
+        
+      </div>
+      <div class="contact " fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="30px" [style.background-color]="isDarkMode? '#161b21' : '' "  >
+        <img style="width: 30px;"  height="30" src="../../../assets/images/facebook-4.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/instagram-2-1.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/github.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/behance.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/pinterest-p.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/twitter.svg" alt="">
+        <img style="width: 30px;"  height="30" src="../../../assets/images/dribbble-icon-1.svg" alt="">
+    </div>  
+    </div>
+  </div>
+</div>

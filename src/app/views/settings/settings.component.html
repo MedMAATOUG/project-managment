@@ -1,0 +1,5 @@
+<p [class]="isDarkMode?   'txt-dark' : '' "><span  >Current Mode is :</span>{{isDarkMode? 'Dark' : 'Light'}}</p>
+
+<div class="mode-button">
+  <dx-button [icon]="mode" (onClick)="toggleMode()" [style.transform]="isDarkMode?  'translateX(100%)' : 'translateX(0)'  "> </dx-button>
+</div>

@@ -1,0 +1,316 @@
+<div class="account-content">
+  <!---------------------------- profile-overview section --------------------------->
+  <section>
+    <div [class]="isDarkMode? 'dark-box' : 'border' " >
+      <div
+        class="containerXY profile-overview"
+        fxLayout="column"
+        fxLayout.gt-sm="row"
+        fxLayoutGap="30px"
+      >
+        <img
+          src="../../../assets/images/300-1.jpg"
+          alt=""
+          width="160"
+          height="160"
+        />
+        <!---------------------------- profile-overview-items --------------------------->
+
+        <div
+          style="width: 100%"
+          class="profile-overview-items"
+          fxLayout="column"
+          fxLayoutAlign="space-between"
+          fxLayoutGap="20px"
+        >
+          <!---------------------------------------profile-overview-items top (top part) ----------------------------------->
+          <div
+            fxLayout="column"
+            fxLayout.gt-md="row"
+            fxLayoutAlign="space-between start"
+            fxLayoutAlign="space-between start"
+            fxLayoutGap="20px"
+          >
+            <!--------------------------------------- top-left ----------------------------------->
+
+            <div fxLayout="column" fxLayoutAlign="space-between"  [style.color]="isDarkMode? '#fff' :  ''  ">
+              <div>
+                <h2>{{ profile.firstName + " " + profile.lastName }}</h2>
+                <div fxLAyout="column" fxLayout.gt-sm="row" fxLayoutGap="20px">
+                  <div
+                    fxLayout="row"
+                    fxLayoutGap="5px"
+                    fxLayoutAlign.gt-sm="center"
+                    fxLayoutAlign="start"
+                  >
+                    <i class="dx-icon-user" style="font-size: 20px" ></i>
+                    <p>{{ profile.job }}</p>
+                  </div>
+
+                  <div
+                    fxLayout="row"
+                    fxLayoutGap="5px"
+                    fxLayoutAlign.gt-sm="center"
+                    fxLayoutAlign="start"
+                  >
+                    <i class="dx-icon-map" style="font-size: 20px"></i>
+                    <p>{{ profile.country + ", " + profile.adress }}</p>
+                  </div>
+
+                  <div
+                    fxLayout="row"
+                    fxLayoutGap="5px"
+                    fxLayoutAlign.gt-sm="center"
+                    fxLayoutAlign="start"
+                  >
+                    <i class="dx-icon-message" style="font-size: 20px"></i>
+                    <p>{{ profile.email }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--------------------------------------- top-left ----------------------------------->
+            <!--------------------------------------- top-right ----------------------------------->
+
+            <div fxLayout="rwo" fxLayoutGap="10px">
+              <dx-button text="Follow"></dx-button>
+              <dx-button text="Hire me"></dx-button>
+              <dx-button icon="overflow"></dx-button>
+            </div>
+            <!--------------------------------------- top-right ----------------------------------->
+          </div>
+          <!--------------------------------------- /profile-overview-items-top (top part) ----------------------------------->
+          <!--------------------------------------- profile-overview-items-bot (bot part) ----------------------------------->
+
+          <div>
+            <div
+              fxLayout="column"
+              fxLayout.gt-md="row"
+              fxLayoutAlign="space-between start"
+              fxLayoutGap="20px"
+            >
+              <!------------------------------------------bot left(status cards)---------------------------------------------- -->
+              <div>
+                <div
+                  fxLayout="column"
+                  fxLayout.gt-xs="row"
+                  fxLayoutGap="20px"
+                  fxLayoutAlign.gt-xs="start"
+                  fxLayoutAlign="center"
+                  style="position: relative"
+                >
+                  <div
+                    class="stat-card"
+                    fxLayout="row"
+                    fxLayoutAlign="start start"
+                    *ngFor="let item of data"
+                  >
+                    <div
+                      fxLaout="row"
+                      fxLayoutAlign="center"
+                      fxLayoutGap="10px"
+                    >
+                      <i
+                        [ngClass]="{
+                          'dx-icon-arrowup': item.currentValue > item.lastValue,
+                          'dx-icon-arrowdown':
+                            item.currentValue < item.lastValue
+                        }"
+                        style="font-size: 20px"
+                      ></i>
+                      <div [ngSwitch]="item.unity" [style.color]="isDarkMode? '#fff' :  ''  ">
+                        <p class="stat-card-value" *ngSwitchCase="'currency'">
+                          {{ item.currentValue | currency }}
+                        </p>
+                        <p class="stat-card-value" *ngSwitchCase="'percent'">
+                          {{ item.currentValue | percent }}
+                        </p>
+                        <p class="stat-card-value" *ngSwitchDefault >
+                          {{ item.currentValue }}
+                        </p>
+                      </div>
+                    </div>
+                    <p
+                      style="
+                        position: absolute;
+                        bottom: 0px;
+                        left: 20px;
+                        color: #c8c4c9;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                      "
+                    >
+                      {{ item.boxName }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!------------------------------------------bot left---------------------------------------------- -->
+              <!------------------------------------------bot right (progres bar)---------------------------------------------- -->
+              <div class="progressbar">
+                <dx-progress-bar
+                  #progressBar
+                  id="progress-bar-status"
+                  width="250px"
+                  [class.complete]="progressBar.value == 10"
+                  [min]="0"
+                  [max]="10"
+                  [statusFormat]="format"
+                  [value]="10 - 5"
+                >
+                </dx-progress-bar>
+              </div>
+              <!------------------------------------------/bot right---------------------------------------------- -->
+            </div>
+          </div>
+          <!---------------------------------------- profile-overview-items-bot (bot part) ---------------------------------------->
+        </div>
+      </div>
+      <!--------------------------------------------- /profile-overview-items -------------------------------------------->
+    </div>
+  </section>
+  <!---------------------------- /profile-overview section --------------------------->
+  <!---------------------------- profile-details section --------------------------->
+  <section>
+    <div [class]="isDarkMode? 'dark-box' : 'border' "   [style.color]="isDarkMode? '#fff' :  ''  ">
+      <div class="containerXY profile-details">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          class="profile-details-header"
+        >
+          <h3 class="profile-details-header-title" [style]="" >Profile Details</h3>
+          <dx-button text="Edit profile"></dx-button>
+        </div>
+
+        <div class="profile-details-content">
+          <div fxLayout.gt-sm="row" class="row">
+            <label class="content-title">Full Name</label>
+            <p class="content-value"  >
+              {{ profile.firstName + " " + profile.lastName }}
+            </p>
+          </div>
+
+          <div fxLayout.gt-sm="row" class="row">
+            <label class="content-title">Company</label>
+            <p class="content-value">
+              {{ profile.company }}
+            </p>
+          </div>
+
+          <div fxLayout.gt-sm="row" class="row">
+            <label class="content-title">Contact Phone</label>
+            <p class="content-value">
+              {{ profile.phone }}
+            </p>
+          </div>
+
+          <div fxLayout.gt-sm="row" class="row">
+            <label class="content-title">Company Site</label>
+            <p class="content-value">
+              {{ profile.companySite }}
+            </p>
+          </div>
+
+          <div fxLayout.gt-sm="row" class="row">
+            <label class="content-title">Country </label>
+            <p class="content-value">
+              {{ profile.country }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-----------------------------/profile-details section --------------------------->
+
+  <!---------------------------- logs section --------------------------->
+  <section>
+    <div [class]="isDarkMode? 'dark-box' : 'border' ">
+      <div class="containerXY account-logs">
+        <dx-data-grid
+        id="gridContainer"
+        [dataSource]="logs"
+        [remoteOperations]="false"
+        [allowColumnReordering]="true"
+        [rowAlternationEnabled]="false"
+        [showBorders]="true"
+        (onContentReady)="contentReady($event)"
+        
+
+      >
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager>
+        <dxo-search-panel
+          [visible]="true"
+          [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+      
+        <dxi-column
+          dataField="location"
+          caption="Location"
+          dataType="string"
+          alignment="start"
+          [groupIndex]="0"
+        ></dxi-column>
+        <dxi-column
+          caption="Status"
+          dataField="status"
+          dataType="string"
+          alignment="center"
+          [allowGrouping]="true"
+          cssClass="bullet"
+        ></dxi-column>
+        <dxi-column
+          caption="Device"
+          dataField="device"
+          dataType="string"
+          [allowGrouping]="true"
+        ></dxi-column>
+        <dxi-column dataField="ip" caption="IP Address" dataType="string"></dxi-column>
+        <dxi-column dataField="time" caption="Time" dataType="string"></dxi-column>
+        <dxi-column dataField="OrderDate" caption="Order Date" dataType="date"></dxi-column>
+      
+        <div *dxTemplate="let data of 'discountCellTemplate'">
+          <div class="chart-cell">
+            <dx-bullet
+              [showTarget]="false"
+              [showZeroLevel]="true"
+              [startScaleValue]="0"
+              [endScaleValue]="100"
+              [value]="data.value * 100"
+            >
+              <dxo-size [width]="150" [height]="35"></dxo-size>
+              <dxo-tooltip
+                [enabled]="true"
+                [paddingTopBottom]="2"
+                [customizeTooltip]="customizeTooltip"
+              >
+                <dxo-font [size]="18"></dxo-font>
+              </dxo-tooltip>
+              <dxo-margin [top]="5" [bottom]="0" [left]="5"></dxo-margin>
+            </dx-bullet>
+          </div>
+        </div>
+      </dx-data-grid>
+      
+      </div>
+    </div>
+  </section>
+  <!-----------------------------/logs section --------------------------->
+</div>
+<!-- /account-content -->
+<!-- ------------------------------------------------------------------------------------------- -->
+<!-- 
+    account-content:
+                - profile-overview :    - profile-overview-items
+                                        -profile-overview-action
+
+                - profile-details :
+
+ -->

@@ -1,0 +1,468 @@
+<div class="dashboard-content" fxLayout="column" fxLayoutGap="30px">
+  <!------------------------------------------------------first row--------------------------------------------- -->
+  <div
+    fxLayout.gt-md="row"
+    fxLayout="column"
+    fxLayoutGap="30px"
+    class="first-row"
+  >
+    <!----------------------------------------- tasks box ------------------------------------------------->
+    <div
+      class=" tasks-box" [class]="isDarkMode? 'dark-box' : 'border' "
+      fxFlex="33%"
+      fxLayout="column"
+      fxLayoutGap="-70px"
+    >
+      <div class="task-box-header box">
+        <h2 class="task-box-title fs-title" >My Tasks</h2>
+        <span>You have </span>
+        <a href="" class="fs-p-bold">4 tasks</a>
+        <span> to complete</span>
+
+        <!----------------------------------drobdown btn--------------------------------------------------------------------->
+        <dx-drop-down-button
+          class="dropdown-btn"
+          [dropDownOptions]="{ width: 230 }"
+          [showArrowIcon]="false"
+          icon="overflow"
+          [items]="['1', 2]"
+        ></dx-drop-down-button>
+      </div>
+      <!---------------------------------------------card wrapper--------------------------------------------->
+      <div class="task-box-body container" fxLayout="column" fxLayoutGap="20px">
+        <!---------------------------------------------card wrapper top row--------------------------------------------->
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+          <div
+            class="card"
+            fxFlex="50%"
+            *ngFor="let card of cardsData.slice(0, 2)"
+          >
+            <div class="card-icon">
+              <i [class]="card.icon"></i>
+            </div>
+            <div class="card-details">
+              <h2 class="card-number">{{ card.number }}</h2>
+              <p class="card-title">{{ card.title }}</p>
+            </div>
+          </div>
+        </div>
+        <!---------------------------------------------card wrapper top row--------------------------------------------->
+        <!---------------------------------------------card wrapper bottum row--------------------------------------------->
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
+          <div
+            class="card"
+            fxFlex="50%"
+            *ngFor="let card of cardsData.slice(2)"
+          >
+            <div class="card-icon">
+              <i [class]="card.icon"></i>
+            </div>
+            <div class="card-details">
+              <h2 class="card-number">{{ card.number }}</h2>
+              <p class="card-title">{{ card.title }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----------------------------------------- /tasks box ------------------------------------------------->
+
+    <!----------------------------------------- today-cours box ------------------------------------------------->
+
+    <div class="box  today-box" fxLayout="column" fxFlex="33%" [class]="isDarkMode? 'dark-box' : 'border' " >
+      <div class="box-header">
+        <h2 class="header-title" [class]="isDarkMode? 'txt-dark' : '' ">Today's Course</h2>
+        <p class="header-content">4 lesons, 3 hours 45 minute</p>
+      </div>
+      <dx-gallery
+        #gallery
+        id="gallery"
+        [dataSource]="galleryData"
+        [height]="500"
+        [slideshowDelay]="10000"
+        [loop]="true"
+        [showNavButtons]="false"
+        [showIndicator]="true"
+        [swipeEnabled]="false"
+        [rtlEnabled] = "false"
+        fxFlex="100"
+      >
+        <div *dxTemplate="let galleryItem of 'item'" fxFlex="100">
+          <div class="gallery-body-wrapper" fxLayout="column" fxFlex="100">
+            <div
+              fxFlex="100"
+              class="gallery-chart-container"
+              fxLayoutAlign="center"
+            >
+              <dx-pie-chart
+                id="pie"
+                type="doughnut"
+                palette="Soft Pastel"
+                [dataSource]="galleryItem.chartData"
+                [size]="{ width: 180, height: 200 }"
+                [innerRadius]="0.8"
+                [customizePoint]="customizePoint"
+              >
+                <dxi-series argumentField="course" valueField="status">
+                  <dxo-label [visible]="false" format="complete">
+                    <dxo-connector [visible]="false"></dxo-connector>
+                  </dxo-label>
+                </dxi-series>
+                <dxo-export [enabled]="false"></dxo-export>
+                <dxo-legend
+                  [margin]="20"
+                  [visible]="false"
+                  horizontalAlignment="right"
+                  verticalAlignment="top"
+                ></dxo-legend>
+                <dxo-tooltip [enabled]="false" format="millions"> </dxo-tooltip>
+              </dx-pie-chart>
+            </div>
+            <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center">
+              <h2 class="indicator-title" [class]="isDarkMode? 'txt-dark' : '' ">{{ galleryItem.title }}</h2>
+              <div
+                class="indicators-wrapper"
+                fxLayout="row"
+                fxLayout.md="row"
+                fxLayout.xs="column"
+                fxLayoutGap="20px"
+              >
+                <div
+                  class="indicator-column"
+                  fxFlex="100"
+                  fxLayout="column"
+                  fxLayoutGap="20px"
+                >
+                  <div class="indicator-item" fxLayout="row" fxLayoutGap="10px">
+                    <i class="dx-icon-chevronright color-style"></i>
+                    <span class="color-style">Topic : </span>
+                    <p class="indicator-item-title color-style">
+                      {{ galleryItem.inducator.topic }}
+                    </p>
+                  </div>
+
+                  <div
+                    class="indicator-item"
+                    fxLayout="row"
+                    fxFlex
+                    fxLayoutGap="10px"
+                  >
+                    <i class="dx-icon-chevronright color-style"></i>
+                    <span class="color-style">Min : </span>
+                    <p class="indicator-item-title color-style">
+                      {{ galleryItem.inducator.min }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="indicator-column"
+                  fxFlex="100"
+                  fxLayout="column"
+                  fxLayoutGap="20px"
+                >
+                  <div class="indicator-item" fxLayout="row" fxLayoutGap="10px">
+                    <i class="dx-icon-chevronright color-style"></i>
+                    <span class="color-style">Students : </span>
+                    <p class="indicator-item-title color-style">
+                      {{ galleryItem.inducator.student }}
+                    </p>
+                  </div>
+
+                  <div
+                    class="indicator-item"
+                    fxLayout="row"
+                    fxFlex
+                    fxLayoutGap="10px"
+                  >
+                    <i class="dx-icon-chevronright color-style"></i>
+                    <span class="color-style">Speakers : </span>
+                    <p class="indicator-item-title color-style">
+                      {{ galleryItem.inducator.speakers }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="action-container"
+              fxFlex
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign="center"
+              fxLayoutGap="20px"
+            >
+              <dx-button text="Skip this" type="normal"></dx-button>
+              <dx-button text="Continue" type="default"></dx-button>
+            </div>
+          </div>
+        </div>
+      </dx-gallery>
+    </div>
+    <!----------------------------------------- /today-cours box ------------------------------------------------->
+    <!----------------------------------------- today-events box ------------------------------------------------->
+
+    <div class="today-events-container today-box  box" fxFlex="33%" [class]="isDarkMode? 'dark-box' : 'border' ">
+      <div class="box-header">
+        <h2 class="header-title" [class]="isDarkMode? 'txt-dark' : '' ">Today's Events</h2>
+        <p class="header-content">4 lesons, 3 hours 45 minute</p>
+      </div>
+      <div class="today-box-body">
+        <dx-gallery
+          #gallery
+          id="gallery"
+          [dataSource]="galleryEventData"
+          [height]="450"
+          [slideshowDelay]="10000"
+          [loop]="true"
+          [showNavButtons]="false"
+          [showIndicator]="true"
+          fxFlex="100"
+        >
+          <div
+            *dxTemplate="let galleryItem of 'item'" fxFlex="100"
+          >
+           
+              <div
+                class="slider gallery-item "
+                fxLayout="column"
+                fxFlex="100"
+                fxLayoutAlign="space-between center"
+               
+                fxLayoutGap="20px"
+
+                
+              >
+                <h2 style="margin-bottom: 0" [class]="isDarkMode? 'txt-dark' : '' ">{{ galleryItem.top.title }}</h2>
+                <div
+                  fxLayout="row"
+                  fxLayout.xs="column"
+                  fxLayoutGap="20px"
+                  fxLayoutAlign="start center"
+                >
+                  <div
+                    class="logo"
+                    fxLayout="row"
+                    fxLayoutAlign="center center"
+                  >
+                    <i
+                      [class]="galleryItem.top.icon"
+                      [style.color]="galleryItem.top.colors.base"
+                      [style.background-color]="
+                        galleryItem.top.colors.background
+                      "
+                      fxFlex
+                    ></i>
+                  </div>
+                  <div class="indicators-wrapper">
+                    <div
+                      class="indicators-wrapper"
+                      fxLayout="row"
+                      fxLayout.xs="column"
+                      fxLayoutGap="20px"
+                     
+                    >
+                      <div
+                        class="indicator-column"
+                        fxLayout="column"
+                        fxLayoutGap="20px"
+                       
+
+                      >
+                        <div
+                          class="indicator-item"
+                          fxLayout="row"
+                          fxLayoutGap="10px"
+                        >
+                          <i class="dx-icon-chevronright color-style"></i>
+                          <span class="color-style">Topic : </span>
+                          <p class="indicator-item-title color-style">
+                            {{ galleryItem.top.indicators.students }}
+                          </p>
+                        </div>
+
+                        <div
+                          class="indicator-item"
+                          fxLayout="row"
+                          fxLayoutGap="10px"
+                        >
+                          <i class="dx-icon-chevronright color-style"></i>
+                          <span class="color-style">Min : </span>
+                          <p class="indicator-item-title color-style">
+                            {{ galleryItem.top.indicators.min }}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div
+                        class="indicator-column"
+                        fxLayout="column"
+                        fxLayoutGap="20px"
+
+                      >
+                        <div
+                          class="indicator-item"
+                          fxLayout="row"
+                          fxLayoutGap="10px"
+                        >
+                          <i class="dx-icon-chevronright color-style"></i>
+                          <span class="color-style">Students : </span>
+                          <p class="indicator-item-title color-style">
+                            {{ galleryItem.top.indicators.students }}
+                          </p>
+                        </div>
+
+                        <div
+                          class="indicator-item"
+                          fxLayout="row"
+                          fxLayoutGap="10px"
+                        >
+                          <i class="dx-icon-chevronright color-style"></i>
+                          <span class="color-style">Speakers : </span>
+                          <p class="indicator-item-title color-style">
+                            {{ galleryItem.top.indicators.speakers }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div  class="action-container"
+                style=" width: 100%;"
+                
+                fxLayout.gt-xs="row"
+                fxLayout.xs="column"
+                fxLayoutAlign="center"
+                fxLayoutGap="20px"
+                 
+
+                >
+                  <dx-button text="Details" type="normal" fxFlex.xs  ></dx-button>
+                  <dx-button text="Joint Event" type="success" fxFlex.xs ></dx-button>
+                </div>
+             
+            </div>
+          </div>
+        </dx-gallery>
+      </div>
+    </div>
+    <!----------------------------------------- /today-events box ------------------------------------------------->
+  </div>
+  <!------------------------------------------------------first row--------------------------------------------- -->
+  <!------------------------------------------------------second row--------------------------------------------- -->
+  <div
+    class="second-row"
+    fxLayoutGap="30px"
+    fxLayout.gt-sm="row"
+    fxLayout="column"
+  >
+    <div class="recommended-course box " fxFlex="50" [class]="isDarkMode? 'dark-box' : 'border' ">
+      <div class="box-header" fxLayoutAlign="space-between center">
+        <div>
+          <h2 class="header-title" [class]="isDarkMode? 'txt-dark' : '' ">Recommended for you</h2>
+          <p class="header-content">8k social visitors</p>
+        </div>
+        <dx-button text="All Courses"></dx-button>
+      </div>
+      <div class="box-body">
+        <div
+          class="box-body-item"
+          fxLayoutAlign="space-between center"
+          fxLayoutAlign.xs="start start"
+          fxLayout.xs="column"
+          *ngFor="let course of recommendedCourse"
+        >
+          <div
+            class="box-body-item-details"
+            fxLayoutAlign="start center"
+            fxLayoutGap="20px"
+          >
+            <h2 class="course-icon" [style.background-color]="course.color ">
+              {{ course.title[0] }}
+            </h2>
+            <div class="course-details">
+              <h2 class="header-title"  [class]="isDarkMode? 'txt-dark' : '' ">{{ course.title }}</h2>
+              <p class="header-content">
+                {{ course.number }} <span>+ Courses</span>
+              </p>
+            </div>
+          </div>
+          <div class="box-item-action">
+            <dx-button icon="arrowright"></dx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="recommended-course box border" fxFlex="50"></div> -->
+    <div class="Activated lesson box " fxFlex="50" [class]="isDarkMode? 'dark-box' : 'border' " >
+      <div class="box-header" fxLayoutAlign="space-between center">
+        <div>
+          <h2 class="header-title" [style.color]="isDarkMode? '#fff' : '' " >Activated lesson</h2>
+          <p class="header-content">8k social visitors</p>
+        </div>
+        <dx-button text="All Lessons"></dx-button>
+      </div>
+      <div class="box-body">
+        <div
+          class="box-body-item"
+          fxLayoutAlign="space-between center"
+          fxLayoutAlign.xs="start start"
+          fxLayout.xs="column"
+          *ngFor="let lesson of activeLesson"
+        >
+          <div
+            class="box-body-item-details"
+            fxLayoutAlign="start center"
+            fxLayoutGap="20px"
+          >
+            <img [src]="lesson.image" alt="" width="40" height="40" />
+            <div class="lesson-details">
+              <h2 class="header-title" [style.color]="isDarkMode? '#fff' : '' ">{{ lesson.title }}</h2>
+              <p class="header-content">
+                {{ lesson.language }}
+              </p>
+            </div>
+          </div>
+          <div
+            class="box-item-action"
+            fxLayoutGap="20px"
+            fxLayout="row"
+            fxLayoutAlign="start center"
+          >
+          <dx-progress-bar
+          #progressBar
+          id="progress-bar-status"
+          width="90%"
+          [class.complete]="progressBar.value == 100"
+          [min]="0"
+          [max]="100"
+          width="100px"
+          [statusFormat]="format"
+          [value]="lesson.progression"
+        >
+        </dx-progress-bar>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------second row--------------------------------------------- -->
+
+  <!------------------------------------------------------therd row---------------------------------------------- -->
+  <div class="box " [class]="isDarkMode? 'dark-box' : 'border' ">
+    <dx-chart id="chart" [dataSource]="courseProgress">
+      <dxo-title text="Course Progress">
+        <dxo-subtitle text="(in Hours)"></dxo-subtitle>
+      </dxo-title>
+      <dxo-common-series-settings
+        argumentField="course"
+        valueField="progress"
+        type="bar"
+      >
+        <dxo-aggregation [enabled]="false" method="sum"></dxo-aggregation>
+      </dxo-common-series-settings>
+      <dxo-series-template nameField="course"></dxo-series-template>
+    </dx-chart>
+  </div>
+  <!------------------------------------------------------therd row---------------------------------------------- -->
+</div>

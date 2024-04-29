@@ -1,0 +1,94 @@
+@import "../../../styles.scss";
+
+::ng-deep .account-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  // ---------------------------------profile-overview-styles-------------------------------------------------//
+  .profile-overview {
+    width: 100%;
+    .profile-overview-items {
+      // --------------------------------- stat-card-styles-------------------------------------------------//
+      .stat-card {
+        padding: 15px;
+        border: dashed 1px var(--secondary);
+        border-radius: 5px;
+        width: 130px;
+        height: 80px;
+        position: relative;
+
+        .stat-card-value {
+          font-size: calc(1.275rem + 0.3vw) !important;
+          font-weight: 500 !important;
+        }
+        .dx-icon-arrowdown {
+            color: var(--danger);
+          }
+          .dx-icon-arrowup {
+            color: var(--success);
+          }
+      }
+      // --------------------------------- /stat-card-styles-------------------------------------------------//
+    }
+    // ---------------------------------top right button style-------------------------------------------------//
+    .dx-button {
+      background-color: #f1f1f2;
+      color: #7882a9;
+      font-weight: 500;
+    }
+    // ---------------------------------/top right button style-------------------------------------------------//
+    // --------------------------------- progressbar style-------------------------------------------------//
+    .dx-progressbar-container {
+      width: 100%;
+      min-width: 250px;
+
+      .dx-progressbar-range {
+        background-color: var(--success);
+      }
+    }
+    // ---------------------------------/progressbar style-------------------------------------------------//
+  }
+  // ---------------------------------profile-overview-styles-------------------------------------------------//
+  // ---------------------------------profile-details-styles-------------------------------------------------//
+
+  .profile-details {
+    // ---------------------------------profile-details-header-styles-------------------------------------------------//
+    .profile-details-header {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: solid 1px #f1f1f2;
+      .dx-button {
+        background-color: $blue-secondary;
+        color: #fff;
+      }
+      .profile-details-header-title {
+        font-weight: 500 !important;
+        font-size: 1.35rem;
+        margin: 0;
+      }
+    }
+    // ---------------------------------/profile-details-header-styles-------------------------------------------------//
+    .profile-details-content {
+      .row {
+        padding: 10px 0;
+        .content-title {
+          width: 33%;
+          color: #c8c4c9;
+          font-weight: 500;
+          font-size: medium;
+        }
+        .content-value {
+          font-weight: 500;
+          font-size: medium;
+        }
+      }
+    }
+  }
+  // ---------------------------------profile-details-content-styles-------------------------------------------------//
+}
+// ---------------------------------profile-overview-styles-------------------------------------------------//
+
+// ---------------------------------profile-logs-styles-------------------------------------------------//
+::ng-deep #gridContainer {
+  background-color: rgb(120, 22, 22) !important; /* Set your desired background color */
+}

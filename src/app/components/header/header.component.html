@@ -1,0 +1,85 @@
+<header>
+  <div class="container" [style.border-bottom]="isDarkMode? 'solid 1px #1d232c ' : 'solid 1px #f1f1f2' " >
+    <div
+      class="toolbar-content" 
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          style="padding: 12px 0"
+        >
+          <i class="dx-icon-home" [style.color]="isDarkMode? '#f5f5f5' :'' "></i>
+          <i class="dx-icon-chevronright" [style.color]="isDarkMode? '#f5f5f5' :'' "></i>
+          <span class="current-page-title" [style.color]="isDarkMode? '#f5f5f5' :'' ">{{
+            sidbarService.CurrentPath()
+          }}</span>
+        </div>
+        <h2 class="current-page-title" [style.color]="isDarkMode? '#f5f5f5' :'' ">{{ sidbarService.CurrentPath() }}</h2>
+      </div>
+      <dx-button text="Click me" style="border-radius: 0px !important;" (onClick)="togglePopup()"
+        >Create New</dx-button
+      >
+      
+      
+    </div>
+  </div>
+</header>
+
+<dx-popup
+  [(visible)]="isPopupVisible"
+  [hideOnOutsideClick]="true"
+  title="Create New Account"
+  [showTitle]="true"
+  [width]="700"
+  [height]="525"
+>
+  <!--------------------------------------- popup content------------------------------------->
+  <div class="form">
+    <div class="dx-fieldset">
+      <div class="dx-fieldset-header">Create new profile</div>
+      <!-- ------------- FirstName fieled ---------------- -->
+      <div class="dx-field">
+        <div class="dx-field-label">FirstName</div>
+        <div class="dx-field-value">
+          <dx-text-box placeholder="enter your FirstName"></dx-text-box>
+        </div>
+      </div>
+      <!-- ------------- FirstName fieled ---------------- -->
+      <!-- ------------- LastName fieled ---------------- -->
+      <div class="dx-field">
+        <div class="dx-field-label">LastName</div>
+        <div class="dx-field-value">
+          <dx-text-box placeholder="enter your LastName"></dx-text-box>
+        </div>
+      </div>
+      <!-- ------------- LastName fieled ---------------- -->
+      <!-- ------------- Email fieled ---------------- -->
+      <div class="dx-field">
+        <div class="dx-field-label">Email</div>
+        <div class="dx-field-value">
+          <dx-text-box placeholder="enter your email"></dx-text-box>
+        </div>
+      </div>
+      <!-- ------------- Email fieled ---------------- -->
+      <!-- ------------- Phone fieled ---------------- -->
+      <div class="dx-field">
+        <div class="dx-field-label">Phone</div>
+        <div class="dx-field-value">
+          <dx-text-box placeholder="enter your Phone"></dx-text-box>
+        </div>
+      </div>
+      <!-- ------------- Phone fieled ---------------- -->
+        <!-- ------------- age fieled ---------------- -->
+        <div class="dx-field">
+          <div class="dx-field-label">Age</div>
+          <div class="dx-field-value">
+            <dx-text-box placeholder="enter your Age"></dx-text-box>
+          </div>
+        </div>
+        <!-- ------------- age fieled ---------------- -->
+    </div>
+  </div>
+</dx-popup>

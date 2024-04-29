@@ -1,0 +1,83 @@
+<!-- <div class="sidebar"> -->
+<dx-drawer
+  [openedStateMode]="selectedOpenMode"
+  [position]="selectedPosition"
+  [revealMode]="selectedRevealMode"
+  template="template"
+  [(opened)]="isDrawerOpen"
+  [minSize]="60"
+  [activeStateEnabled]="true"
+  [hoverStateEnabled]="true"
+  style=" background-color : #E4E6E9; "
+  [class]="isDarkMode ? 'bg-dark' : '' "
+>
+  <div *dxTemplate="let data of 'template'" style="width: 340px">
+    <div class="brand" [ngClass]="{ brand2: !isDrawerOpen }">
+      <img [src]="logo" alt="" [src]="" />
+    </div>
+    <dx-button id="drower-btn" [icon]="icon" (onClick)="toggleIconeButton()">
+    </dx-button>
+
+    <!-- dx-theme-accent-as-background-color -->
+    <dx-list
+      [items]="navigation"
+      [width]="340"
+      selectionMode="single"
+      itemTemplate="links"
+    >
+      <div *dxTemplate="let link of 'links'">
+        <a [routerLink]="['/' + link.path]" *ngIf="link.submenu.length == 0">
+          <div>
+            <div class="dx-list-item-icon-container">
+              <i class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"  [style.color]="isDarkMode? '#586a84' : '' " ></i>
+            </div>
+            <span class="sidbarTitle"  [style.color]="isDarkMode? '#586a84' : '' ">{{ link.text }}</span>
+          </div>
+        </a>
+        <!-- <div
+          [id]="link.id"
+          *ngIf="link.submenu.length !== 0"
+          style="margin: 0; padding: 0"
+        >
+          <div [style.height]="slected[0].toggel ? '200px' : '0px'" class="sub">
+            <div *ngFor="let item of link.submenu">
+             <a [routerLink]="['/' + item.path]">
+              <div class="dx-list-item-icon-container"  fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+                <i
+                  class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"
+                ></i>
+                <span>{{ item.text }}</span>
+              </div>
+             </a>
+            </div>
+          </div>
+        </div> -->
+        <div *ngIf="link.submenu.length == !0" [class]="isDarkMode? 'dark' : ''">
+          <dx-tree-view 
+            id="simple-treeview"
+            [dataSource]="link.submenu"
+            (onItemClick)="selectItem($event)"
+            (onItemExpanded)="cheKSidBarExpended()"
+            [focusStateEnabled]="false"
+            [elementAttr]="isDarkMode? { class: 'darkSidebarTitle'  } : {class :'sidbarTitle' }"
+          >
+            ></dx-tree-view
+          >
+        </div>
+      </div>
+    </dx-list>
+  </div>
+
+  <div id="content" class="dx-theme-background-color" >
+  
+
+<div style="transition: background-color 0.5s ease;" [class]=" isDarkMode? 'bg-dark-overlay' : ''  " >
+      <dx-scroll-view [height]="'100vh'">
+        <app-header [isDarkMode]="isDarkMode"></app-header>
+        <div class="container " style="padding-bottom: 30px">
+          <router-outlet></router-outlet>
+        </div>
+      </dx-scroll-view>
+   </div>
+  </div>
+</dx-drawer>

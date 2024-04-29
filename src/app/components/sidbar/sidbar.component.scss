@@ -1,0 +1,117 @@
+// ------------------drower style---------------------------------
+::ng-deep .dx-drawer {
+  // background-color: #E4E6E9;
+  // background-color: #e5eaf0 ;
+transition: background-color 0.5s ease;
+
+  .brand {
+    padding-top: 20px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .brand2 {
+    display: flex;
+    align-items: center;
+    width: 60px;
+    justify-content: center;
+    img {
+      width: 30px;
+    }
+  }
+
+  .dx-list {
+    margin-top: 20px;
+
+    .dx-list-item {
+      border: none;
+
+      .dx-list-item-content {
+        padding: 0;
+
+        // ------------------icons styles------------------------------------
+        .dx-icon {
+          font-size: 30px;
+          color:#193755 ;
+        }
+
+        // ------------------links styles------------------------------------
+        a {
+          display: block;
+          height: 100%;
+          width: 100%;
+          text-decoration: none !important;
+          padding: 15px;
+        }
+        .sidbarTitle {
+          height: 100%;
+          width: 100%;
+          color: #193755 ;
+          font-weight: 700;
+          margin-left: 20px !important;
+        }
+      }
+    }
+  }
+  // -------------------dropdown link ---------------------------------------//
+  .dx-treeview-toggle-item-visibility::before,
+  .dx-treeview-toggle-item-visibility::after {
+    font-size: 30px;
+    // padding:0 15px;
+    color: #193755;
+    top: 85%;
+  }
+  .dx-treeview-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    // gap: 40px;
+    span {
+      padding-left: 20px;
+    }
+  }
+  #drower-btn {
+    background-color: transparent ;
+    border: none !important;
+    z-index: 10;
+    position: absolute;
+    right: 0;
+    top: 80%;
+    // transform: translateX(80%);
+    // ------------------button icon styles------------------------------------
+    .dx-icon {
+      color: #193755;
+      font-size: 20px;
+      transition: 0.2s ease;
+    }
+    .dx-icon:hover{
+      color: #06d8f3;
+
+    }
+  }
+
+  #content {
+    position: relative;
+    background-color: #06d8f3;
+
+    // ------------------button styles------------------------------------
+
+  }
+}
+// -----------------------------dark Mode style-----------------------------------//
+  .darkSidebarTitle{
+    height: 100%;
+    width: 100%;
+    color: #586a84 ;
+    font-weight: 700;
+    margin-left: 20px !important;
+    .dx-treeview-toggle-item-visibility::before,
+    .dx-treeview-toggle-item-visibility::after {
+      font-size: 30px;
+      // padding:0 15px;
+      color: #586a84;
+      top: 85%;
+    }
+  }
