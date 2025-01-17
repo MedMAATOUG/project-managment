@@ -10,13 +10,16 @@ import { SettingsService } from 'src/app/services/settings.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent {
-  private $destroy : Subject<void> = new Subject<void>();
-  public isDarkMode : boolean = false;
+  private $destroy: Subject<void> = new Subject<void>();
+  public isDarkMode: boolean = false;
   private collapsed = false;
   public data!: any[];
   public logs!: any[];
   public profile!: Profile;
-  constructor(private accountService: AccountService , private settingService : SettingsService) {
+  constructor(
+    private accountService: AccountService,
+    private settingService: SettingsService
+  ) {
     this.getData();
     this.getLog();
     this.getMode().subscribe();
@@ -27,7 +30,6 @@ export class AccountComponent {
     this.$destroy.next();
     this.$destroy.complete();
   }
-
 
   private getProfile() {
     this.accountService.getProfile();
@@ -42,15 +44,12 @@ export class AccountComponent {
     this.logs = this.accountService.order;
   }
 
-  private getMode():Observable<boolean> {
-    return this.settingService.getActiveMode().pipe(takeUntil(this.$destroy) , map(m=>this.isDarkMode = m));
+  private getMode(): Observable<boolean> {
+    return this.settingService.getActiveMode().pipe(
+      takeUntil(this.$destroy),
+      map((m) => (this.isDarkMode = m))
+    );
   }
-
-  // public customizeColumns(columns : any) {
-  //   columns[0].cellTemplate = (cellElement : any, cellInfo: any) => {
-  //     cellElement.nativeElement.style.backgroundColor = 'lightblue';
-  //   };
-  // }
 
   public format(ratio: any) {
     return `Profile completation: ${ratio * 100}%`;

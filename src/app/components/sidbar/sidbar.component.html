@@ -1,4 +1,3 @@
-<!-- <div class="sidebar"> -->
 <dx-drawer
   [openedStateMode]="selectedOpenMode"
   [position]="selectedPosition"
@@ -8,8 +7,8 @@
   [minSize]="60"
   [activeStateEnabled]="true"
   [hoverStateEnabled]="true"
-  style=" background-color : #E4E6E9; "
-  [class]="isDarkMode ? 'bg-dark' : '' "
+  style="background-color: #e4e6e9"
+  [class]="isDarkMode ? 'bg-dark' : ''"
 >
   <div *dxTemplate="let data of 'template'" style="width: 340px">
     <div class="brand" [ngClass]="{ brand2: !isDrawerOpen }">
@@ -29,9 +28,16 @@
         <a [routerLink]="['/' + link.path]" *ngIf="link.submenu.length == 0">
           <div>
             <div class="dx-list-item-icon-container">
-              <i class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"  [style.color]="isDarkMode? '#586a84' : '' " ></i>
+              <i
+                class="dx-icon dx-list-item-icon dx-icon-{{ link.icon }}"
+                [style.color]="isDarkMode ? '#586a84' : ''"
+              ></i>
             </div>
-            <span class="sidbarTitle"  [style.color]="isDarkMode? '#586a84' : '' ">{{ link.text }}</span>
+            <span
+              class="sidbarTitle"
+              [style.color]="isDarkMode ? '#586a84' : ''"
+              >{{ link.text }}</span
+            >
           </div>
         </a>
         <!-- <div
@@ -52,14 +58,21 @@
             </div>
           </div>
         </div> -->
-        <div *ngIf="link.submenu.length == !0" [class]="isDarkMode? 'dark' : ''">
-          <dx-tree-view 
+        <div
+          *ngIf="link.submenu.length == !0"
+          [class]="isDarkMode ? 'dark' : ''"
+        >
+          <dx-tree-view
             id="simple-treeview"
             [dataSource]="link.submenu"
             (onItemClick)="selectItem($event)"
             (onItemExpanded)="cheKSidBarExpended()"
             [focusStateEnabled]="false"
-            [elementAttr]="isDarkMode? { class: 'darkSidebarTitle'  } : {class :'sidbarTitle' }"
+            [elementAttr]="
+              isDarkMode
+                ? { class: 'darkSidebarTitle' }
+                : { class: 'sidbarTitle' }
+            "
           >
             ></dx-tree-view
           >
@@ -68,16 +81,17 @@
     </dx-list>
   </div>
 
-  <div id="content" class="dx-theme-background-color" >
-  
-
-<div style="transition: background-color 0.5s ease;" [class]=" isDarkMode? 'bg-dark-overlay' : ''  " >
+  <div id="content" class="dx-theme-background-color">
+    <div
+      style="transition: background-color 0.5s ease"
+      [class]="isDarkMode ? 'bg-dark-overlay' : ''"
+    >
       <dx-scroll-view [height]="'100vh'">
         <app-header [isDarkMode]="isDarkMode"></app-header>
-        <div class="container " style="padding-bottom: 30px">
+        <div class="container" style="padding-bottom: 30px">
           <router-outlet></router-outlet>
         </div>
       </dx-scroll-view>
-   </div>
+    </div>
   </div>
 </dx-drawer>
